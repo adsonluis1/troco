@@ -1,5 +1,4 @@
 "use strict";
-let entrada = 0;
 let moedas = {
     moedareal: 0,
     moeda50: 0,

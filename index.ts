@@ -6,7 +6,6 @@ interface Imoedas {
     moeda5:number
     moeda1:number
 }
-let entrada = 0
 
 let moedas:Imoedas={
     moedareal : 0,
