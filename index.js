@@ -8,8 +8,8 @@ let moedas = {
     moeda1: 0
 };
 let quantidade_de_moedas = {
-    moedareal: 17,
-    moeda50: 48,
+    moedareal: 5,
+    moeda50: 1,
     moeda25: 29,
     moeda10: 75,
     moeda5: 59,
@@ -47,6 +47,7 @@ function calculo(troco, moedas_usadas) {
 }
 function trocado(preço, pagamento) {
     // moedas aceitas = 0.05 , 0.10 , 0.25 , 0.50 , 1
+    // func MAIN    
     let troco = pagamento - preço;
     let moedas_usadas = [];
     if (troco === 0) {
@@ -58,14 +59,19 @@ function trocado(preço, pagamento) {
     else {
         calculo(troco, moedas_usadas);
         quantidadeDecada(moedas_usadas);
-        showinfo(preço, pagamento, troco, moedas);
+        showinfo(preço, pagamento, troco, moedas, quantidade_de_moedas);
     }
 }
-function showinfo(preço, pagamento, troco, moedas) {
+function showinfo(preço, pagamento, troco, moedas, quantidade_de_moedas) {
     console.log(`valor do produto: ${preço}`);
     console.log(`dinheiro recebido: ${pagamento}`);
     console.log(troco.toFixed(2));
-    console.log(`moeda de 1: ${moedas.moedareal}`);
+    if (quantidade_de_moedas.moedareal < 0) {
+        console.log(`moeda de 1: ${moedas.moedareal + quantidade_de_moedas.moedareal} `);
+    }
+    else {
+        console.log(`moeda de 1: ${moedas.moedareal}`);
+    }
     console.log(`moeda de 0.50: ${moedas.moeda50}`);
     console.log(`moeda de 0.25: ${moedas.moeda25}`);
     console.log(`moeda de 0.10: ${moedas.moeda10}`);
@@ -74,28 +80,46 @@ function showinfo(preço, pagamento, troco, moedas) {
 }
 function quantidadeDecada(array) {
     array.find((num1) => {
-        if (num1 == 1)
+        if (num1 == 1) {
             moedas.moedareal++;
+            quantidade_de_moedas.moedareal--;
+            if (quantidade_de_moedas.moedareal == 0) {
+                console.log('moeda de 1 real acabou');
+            }
+        }
     });
     array.find((num1) => {
-        if (num1 == 0.50)
+        if (num1 == 0.50) {
             moedas.moeda50++;
+            quantidade_de_moedas.moeda50--;
+            if (quantidade_de_moedas.moeda50 == 0) {
+                console.log('moeda de 50 centavos acabou');
+            }
+        }
     });
     array.find((num1) => {
-        if (num1 == 0.25)
+        if (num1 == 0.25) {
             moedas.moeda25++;
+            quantidade_de_moedas.moeda25--;
+        }
     });
     array.find((num1) => {
-        if (num1 == 0.10)
+        if (num1 == 0.10) {
             moedas.moeda10++;
+            quantidade_de_moedas.moeda10--;
+        }
     });
     array.find((num1) => {
-        if (num1 == 0.05)
+        if (num1 == 0.05) {
             moedas.moeda5++;
+            quantidade_de_moedas.moeda5--;
+        }
     });
     array.find((num1) => {
-        if (num1 == 0.01)
+        if (num1 == 0.01) {
             moedas.moeda1++;
+            quantidade_de_moedas.moeda1--;
+        }
     });
 }
 trocado(48, 55.97);

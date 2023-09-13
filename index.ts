@@ -17,8 +17,8 @@ let moedas:Imoedas={
 }
 
 let quantidade_de_moedas:Imoedas={
-    moedareal : 17,
-    moeda50 : 48,
+    moedareal : 5,
+    moeda50 : 1,
     moeda25 : 29,
     moeda10 : 75,
     moeda5 : 59,
@@ -70,6 +70,7 @@ function calculo(troco:number,moedas_usadas:number[]){
 
 function trocado(preço:number , pagamento:number){
     // moedas aceitas = 0.05 , 0.10 , 0.25 , 0.50 , 1
+    // func MAIN    
     let troco:number = pagamento - preço
     let moedas_usadas:number[] = []
 
@@ -80,15 +81,19 @@ function trocado(preço:number , pagamento:number){
     }else{
         calculo(troco,moedas_usadas)
         quantidadeDecada(moedas_usadas)
-        showinfo(preço,pagamento,troco,moedas)
+        showinfo(preço,pagamento,troco,moedas,quantidade_de_moedas)
     }
 }
 
-function showinfo(preço:number,pagamento:number,troco:number,moedas:Imoedas){
+function showinfo(preço:number,pagamento:number,troco:number,moedas:Imoedas,quantidade_de_moedas:Imoedas){
     console.log(`valor do produto: ${preço}`)
     console.log(`dinheiro recebido: ${pagamento}`)
     console.log(troco.toFixed(2))
-    console.log(`moeda de 1: ${moedas.moedareal}`)
+    if(quantidade_de_moedas.moedareal < 0){
+        console.log(`moeda de 1: ${moedas.moedareal + quantidade_de_moedas.moedareal} `)
+    }else{
+        console.log(`moeda de 1: ${moedas.moedareal}`)
+    }
     console.log(`moeda de 0.50: ${moedas.moeda50}`)
     console.log(`moeda de 0.25: ${moedas.moeda25}`)
     console.log(`moeda de 0.10: ${moedas.moeda10}`)
@@ -99,33 +104,51 @@ function showinfo(preço:number,pagamento:number,troco:number,moedas:Imoedas){
 function quantidadeDecada(array:Number[]){
     
     array.find((num1)=>{
-       if( num1 == 1)
+       if( num1 == 1){
         moedas.moedareal++
+        quantidade_de_moedas.moedareal--
+        if(quantidade_de_moedas.moedareal == 0){
+            console.log('moeda de 1 real acabou')
+        }
+       }
     })
 
     array.find((num1)=>{
-       if(num1 == 0.50)
+       if(num1 == 0.50){
         moedas.moeda50++
+        quantidade_de_moedas.moeda50--
+        if(quantidade_de_moedas.moeda50 == 0){
+            console.log('moeda de 50 centavos acabou')
+        }
+        }
     })
 
     array.find((num1)=>{
-        if(num1 == 0.25)
+        if(num1 == 0.25){
         moedas.moeda25++
+        quantidade_de_moedas.moeda25--
+        }
     })
 
     array.find((num1)=>{
-        if(num1 == 0.10)
+        if(num1 == 0.10){
         moedas.moeda10++
+        quantidade_de_moedas.moeda10--
+        }
     })
 
     array.find((num1)=>{
-        if(num1 == 0.05)
+        if(num1 == 0.05){
         moedas.moeda5++
+        quantidade_de_moedas.moeda5--
+        }
     })
 
     array.find((num1)=>{
-        if(num1 == 0.01)
+        if(num1 == 0.01){
         moedas.moeda1++
+        quantidade_de_moedas.moeda1--
+        }
     })
 
 }
