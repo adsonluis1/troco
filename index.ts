@@ -19,53 +19,49 @@ let moedas:Imoedas={
 let quantidade_de_moedas:Imoedas={
     moedareal : 5,
     moeda50 : 1,
-    moeda25 : 29,
-    moeda10 : 75,
+    moeda25 : 4,
+    moeda10 : 750,
     moeda5 : 59,
     moeda1 : 43
 }
 
 function calculo(troco:number,moedas_usadas:number[]){
-    while(troco >= 1){
+    while(troco >= 1 && quantidade_de_moedas.moedareal > 0){
         troco = troco - 1
-        moedas_usadas.push(1)
-        
-   }
+        moedas_usadas.push(1)  
+        quantidade_de_moedas.moedareal--  
+    }
 
-    while(troco >= 0.50){
+    while(troco >= 0.50 && quantidade_de_moedas.moeda50 > 0){
         troco = troco - 0.50
         moedas_usadas.push(0.50)
-        
+        quantidade_de_moedas.moeda50--
     }
 
-    while(troco >= 0.25){
+    while(troco >= 0.25 && quantidade_de_moedas.moeda25 > 0){
         troco = troco - 0.25
         moedas_usadas.push(0.25)
-        
+        quantidade_de_moedas.moeda25--
     }
 
-    while(troco >= 0.10){
+    while(troco >= 0.10 && quantidade_de_moedas.moeda10 > 0){
         troco = troco - 0.10
         moedas_usadas.push(0.10)
-       
+        quantidade_de_moedas.moeda10--
     }
 
-    while(troco >= 0.05){
+    while(troco >= 0.05 && quantidade_de_moedas.moeda5 > 0){
         troco = troco - 0.05
         moedas_usadas.push(0.05)
-        
+        quantidade_de_moedas.moeda5--
     }
 
-    while(troco >= 0.01){
+    while(troco >= 0.01 && quantidade_de_moedas.moeda1 > 0){
         troco = troco - 0.01
         moedas_usadas.push(0.01)
-
+        quantidade_de_moedas.moeda1--
     }
 
-    if(troco != 0){
-        troco= 0
-        moedas_usadas.push(0.01)
-    }
 }
 
 function trocado(preço:number , pagamento:number){
@@ -90,7 +86,7 @@ function showinfo(preço:number,pagamento:number,troco:number,moedas:Imoedas,qua
     console.log(`dinheiro recebido: ${pagamento}`)
     console.log(troco.toFixed(2))
     if(quantidade_de_moedas.moedareal < 0){
-        console.log(`moeda de 1: ${moedas.moedareal + quantidade_de_moedas.moedareal} `)
+        console.log(`moeda de 1: ${moedas.moedareal}`)
     }else{
         console.log(`moeda de 1: ${moedas.moedareal}`)
     }
@@ -106,51 +102,39 @@ function quantidadeDecada(array:Number[]){
     array.find((num1)=>{
        if( num1 == 1){
         moedas.moedareal++
-        quantidade_de_moedas.moedareal--
-        if(quantidade_de_moedas.moedareal == 0){
-            console.log('moeda de 1 real acabou')
-        }
        }
     })
 
     array.find((num1)=>{
        if(num1 == 0.50){
-        moedas.moeda50++
-        quantidade_de_moedas.moeda50--
-        if(quantidade_de_moedas.moeda50 == 0){
-            console.log('moeda de 50 centavos acabou')
-        }
+        moedas.moeda50++        
         }
     })
 
     array.find((num1)=>{
         if(num1 == 0.25){
         moedas.moeda25++
-        quantidade_de_moedas.moeda25--
         }
     })
 
     array.find((num1)=>{
         if(num1 == 0.10){
         moedas.moeda10++
-        quantidade_de_moedas.moeda10--
         }
     })
 
     array.find((num1)=>{
         if(num1 == 0.05){
         moedas.moeda5++
-        quantidade_de_moedas.moeda5--
         }
     })
 
     array.find((num1)=>{
         if(num1 == 0.01){
         moedas.moeda1++
-        quantidade_de_moedas.moeda1--
         }
     })
 
 }
 
-trocado(48,55.97)
+trocado(48,67.99)
