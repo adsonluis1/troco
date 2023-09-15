@@ -16,7 +16,7 @@ const arr = ['adson', 'anne', 'rafaelle'];
 const [a, , b] = arr;
 console.log(a);
 console.log(b);
-function trocaDeNome(nome, posiçãoDoNome, nomeNovo, outroNome, posiçãoOutronome) {
+function trocaDeNome(nome, posiçãoDoNome, nomeNovo, posiçãoOutronome, outroNome) {
     const arrnome = nome.split(' ');
     arrnome[posiçãoDoNome - 1] = nomeNovo;
     let nome2;
@@ -30,4 +30,4 @@ function trocaDeNome(nome, posiçãoDoNome, nomeNovo, outroNome, posiçãoOutron
     nome2 = nome2.replace(/,/g, ' ');
     console.log(nome2);
 }
-trocaDeNome('anne rafaelle matias dos santos', 5, 'almeida');
+trocaDeNome('adson rodrigues luis de almeida', 2, 'luis', 3, 'rodrigues');

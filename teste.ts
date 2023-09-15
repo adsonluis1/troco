@@ -28,7 +28,7 @@ console.log(a)
 console.log(b)
 
 
-function trocaDeNome(nome:string,posiçãoDoNome:number,nomeNovo:string,outroNome?:string,posiçãoOutronome?:number){
+function trocaDeNome(nome:string,posiçãoDoNome:number,nomeNovo:string,posiçãoOutronome?:number,outroNome?:string){
 
     const arrnome = nome.split(' ')
     arrnome[posiçãoDoNome - 1] = nomeNovo
@@ -40,10 +40,10 @@ function trocaDeNome(nome:string,posiçãoDoNome:number,nomeNovo:string,outroNom
     }else{
         nome2= arrnome.toString()
     }
-    
+
     nome2 = nome2.replace(/,/g,' ')
     console.log(nome2)
 
 }
 
-trocaDeNome('anne rafaelle matias dos santos', 5, 'almeida')
+trocaDeNome('adson rodrigues luis de almeida', 2, 'luis', 3 , 'rodrigues')
